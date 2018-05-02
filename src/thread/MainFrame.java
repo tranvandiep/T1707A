@@ -5,8 +5,13 @@
  */
 package thread;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +20,24 @@ import java.util.List;
 public class MainFrame extends javax.swing.JFrame {
     List<Student> studentList = new ArrayList<>();
 
+    DefaultTableModel tableModel;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        
+        tableModel = (DefaultTableModel) tbl_view_student.getModel();
+    }
+    
+    void displayAll() {
+        tableModel.setNumRows(0);
+        
+        int index = 0;
+        for (Student row : studentList) {
+            Object[] object = {index + 1, row.getUsername(), row.getGender(), row.getEmail(), row.getPhoneNumber()};
+            tableModel.insertRow(index++, object);
+        }
     }
 
     /**
@@ -33,6 +51,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_username = new javax.swing.JTextField();
@@ -45,7 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         btn_save = new javax.swing.JButton();
         btn_reset = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbl_view_student = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,6 +79,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane3.setViewportView(jList1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -156,18 +183,30 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Quan ly thong tin sinh vien"));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_view_student.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Full Name", "Gender", "Email", "Phone Number"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tbl_view_student);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,6 +244,31 @@ public class MainFrame extends javax.swing.JFrame {
         studentList.add(std);
         
         System.out.println("Size : " + studentList.size());
+        
+        //insert data into database
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/T1707A", "root", "");
+            
+            String sql = "INSERT INTO TABLE_USER(FULL_NAME, GENDER, EMAIL, PHONE_NUMBER) VALUES ('"+username+"', '"+gender+"', '"+email+"', '"+phoneNumber+"')";
+            
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            
+        } catch(Exception e) {
+            e.printStackTrace();
+            System.err.println("Error.......");
+        } finally {
+            if(conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                }
+            }
+        }
+        
+        displayAll();
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
@@ -258,11 +322,13 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tbl_view_student;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_phone_number;
     private javax.swing.JTextField txt_username;
