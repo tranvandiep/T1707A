@@ -283,9 +283,16 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/T1707A", "root", "");
             
-            String sql = "INSERT INTO TABLE_USER(FULL_NAME, GENDER, EMAIL, PHONE_NUMBER) VALUES ('"+username+"', '"+gender+"', '"+email+"', '"+phoneNumber+"')";
+//            String sql = "INSERT INTO TABLE_USER(FULL_NAME, GENDER, EMAIL, PHONE_NUMBER) VALUES ('"+username+"', '"+gender+"', '"+email+"', '"+phoneNumber+"')";
+            
+//            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            String sql = "INSERT INTO TABLE_USER(FULL_NAME, GENDER, EMAIL, PHONE_NUMBER) VALUES (?, ?, ?, ?)";
             
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, gender);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, phoneNumber);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             
