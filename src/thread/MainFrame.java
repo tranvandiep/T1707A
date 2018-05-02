@@ -8,7 +8,9 @@ package thread;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +30,37 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         
         tableModel = (DefaultTableModel) tbl_view_student.getModel();
+        
+        seleclAllStudentFromDatabase();
+        
+        displayAll();
+    }
+    
+    void seleclAllStudentFromDatabase() {
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/T1707A", "root", "");
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM TABLE_USER");
+
+            while (rs.next()) {
+                Student student = new Student(rs.getString("FULL_NAME"),
+                            rs.getString("GENDER"),
+                        rs.getString("EMAIL"),
+                        rs.getString("PHONE_NUMBER")
+                );
+                studentList.add(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stmt.close();
+                conn.close();
+            } catch (SQLException ex) {
+            }
+        }
     }
     
     void displayAll() {
