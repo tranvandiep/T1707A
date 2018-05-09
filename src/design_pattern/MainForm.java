@@ -5,6 +5,8 @@
  */
 package design_pattern;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -19,7 +21,6 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
-        
         Locale currentLocale = new  Locale("vi", "VN");
         ResourceBundle resourceBundle = ResourceBundle.getBundle("project", currentLocale);
         
@@ -28,6 +29,27 @@ public class MainForm extends javax.swing.JFrame {
         label_gender.setText(resourceBundle.getString("label_gender"));
         label_phone_number.setText(resourceBundle.getString("label_phone_number"));
         label_username.setText(resourceBundle.getString("label_username"));
+        
+        //cach 3
+//        showLog.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                System.out.println("Show Log 1........");
+//            }
+//        });
+        
+        //cach 4 : lambda
+        showLog.addActionListener(e->{
+            System.out.println("Show Log 1........");
+            System.out.println("Show Log 1........");
+            System.out.println("Show Log 1........");
+            System.out.println("Show Log 1........");
+            System.out.println("Show Log 1........");
+        });
+        
+//          ShowLogActionListener listener = new ShowLogActionListener();
+//          showLog.addActionListener(listener);
+//        showLog.addActionListener(new ShowLogActionListener());
     }
 
     /**
@@ -49,6 +71,8 @@ public class MainForm extends javax.swing.JFrame {
         label_phone_number = new javax.swing.JLabel();
         txt_username4 = new javax.swing.JTextField();
         label_gender = new javax.swing.JLabel();
+        showLog = new javax.swing.JButton();
+        showLog2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Localization");
@@ -74,6 +98,16 @@ public class MainForm extends javax.swing.JFrame {
         label_gender.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label_gender.setText("Gioi Tinh");
 
+        showLog.setActionCommand("");
+        showLog.setLabel("Show Log");
+
+        showLog2.setLabel("Show Log2");
+        showLog2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showLog2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -85,23 +119,28 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(label_phone_number)
                         .addGap(91, 91, 91)
                         .addComponent(txt_username3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(label_email)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_username2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(label_address)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(label_username)
-                            .addGap(49, 49, 49)
-                            .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(label_gender)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_username4, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(showLog)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(showLog2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_email)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_username2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_address)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_username1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(label_username)
+                                .addGap(49, 49, 49)
+                                .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(label_gender)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_username4, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,7 +166,11 @@ public class MainForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_gender)
                     .addComponent(txt_username4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(showLog)
+                    .addComponent(showLog2))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +179,11 @@ public class MainForm extends javax.swing.JFrame {
     private void txt_username3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_username3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_username3ActionPerformed
+
+    private void showLog2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showLog2ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Hello ......");
+    }//GEN-LAST:event_showLog2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +226,8 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel label_gender;
     private javax.swing.JLabel label_phone_number;
     private javax.swing.JLabel label_username;
+    private javax.swing.JButton showLog;
+    private javax.swing.JButton showLog2;
     private javax.swing.JTextField txt_username;
     private javax.swing.JTextField txt_username1;
     private javax.swing.JTextField txt_username2;

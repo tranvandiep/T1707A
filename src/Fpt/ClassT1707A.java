@@ -7,22 +7,8 @@ package Fpt;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -49,7 +35,7 @@ public class ClassT1707A {
         inObj.close();
         in.close();
         System.out.println(std.toString());
-        
+
 //        File file = new File("/Users/Diep.Tran/Desktop/vidu.txt");
 //        try {
 ////            FileOutputStream out = new FileOutputStream(file);
@@ -64,7 +50,6 @@ public class ClassT1707A {
 //        } catch (FileNotFoundException ex) {
 //            Logger.getLogger(ClassT1707A.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
     }
-    
+
 }

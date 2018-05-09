@@ -16,6 +16,11 @@ public class DataController {
         
     }
     
+    /**
+     * 
+     * @param changeValue
+     * @param isTest 
+     */
     public synchronized void changeValue(int changeValue, boolean isTest) {
         x += changeValue;
         System.out.println("x = " + x);
@@ -24,5 +29,16 @@ public class DataController {
     public synchronized void showX() {
         changeValue(1, false);
         System.out.println("x = " + x);
+    }
+    
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param z
+     * @return 
+     */
+    public int hello(int x, int y, int z) {
+        return 0;
     }
 }

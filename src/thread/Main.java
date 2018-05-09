@@ -5,11 +5,21 @@
  */
 package thread;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 /**
  *
  * @author Diep.Tran
  */
 public class Main {
+    private static Logger logger = LogManager.getLogger(Main.class.getName());
+    
+    /**
+     * args : y nghia ?????
+     * @param args 
+     */
     public static void main(String[] args) {
         Data data = new Data();
         Data.x++;
@@ -20,5 +30,7 @@ public class Main {
         Data.x++;
         data1.y++;
         System.out.println("x = " + Data.x + "; y = " + data1.y);
+        
+        logger.debug("end of progam");
     }
 }

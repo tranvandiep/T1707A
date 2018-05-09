@@ -32,26 +32,33 @@
                       <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
                       <Component id="txt_username3" min="-2" pref="378" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="label_email" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_username2" min="-2" pref="378" max="-2" attributes="0"/>
+                          <Component id="showLog" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="showLog2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="label_address" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_username1" min="-2" pref="378" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="label_username" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="txt_username" min="-2" pref="378" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="label_gender" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="txt_username4" min="-2" pref="378" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="label_email" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txt_username2" min="-2" pref="378" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="label_address" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txt_username1" min="-2" pref="378" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="label_username" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                              <Component id="txt_username" min="-2" pref="378" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="label_gender" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txt_username4" min="-2" pref="378" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -87,7 +94,12 @@
                   <Component id="label_gender" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_username4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="192" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="showLog" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="showLog2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="131" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -145,6 +157,20 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Gioi Tinh"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="showLog">
+      <Properties>
+        <Property name="actionCommand" type="java.lang.String" value=""/>
+        <Property name="label" type="java.lang.String" value="Show Log"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="showLog2">
+      <Properties>
+        <Property name="label" type="java.lang.String" value="Show Log2"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showLog2ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

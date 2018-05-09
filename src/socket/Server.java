@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thread;
+package socket;
 
 /**
- * asfgshfgsdajhf
+ *
  * @author Diep.Tran
  */
-public class Data {
-    //safsfsadfsdaf
-    public static int x = 0;
+public class Server {
     
-    //asdfasfdsfasdf
-    public int y = 0;
 }

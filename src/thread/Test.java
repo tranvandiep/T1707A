@@ -28,5 +28,17 @@ public class Test {
         thread5.start();
         
         System.out.println("finish thread main");
+        
+        Thread b = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                
+            }
+        });
+        
+        Thread a = new Thread(() -> {
+            
+        });
+        a.start();
     }
 }
